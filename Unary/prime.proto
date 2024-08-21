@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package prime;
+
+service PrimeNumberService {
+    rpc get_prime_number (PrimeRequest) returns (PrimeResponse);
+}
+
+message PrimeRequest {
+    int32 position = 1;
+}
+
+message PrimeResponse {
+    int64 number = 1;
+}
