@@ -9,6 +9,7 @@ load_dotenv()
 
 ip = os.getenv("IP")
 port = os.getenv("PORT")
+size=int(os.getenv("SIZE"))
 
 arr=[]
 
@@ -19,7 +20,7 @@ def generate_random():
     return random.randint(1, 1000)
 
 def generate_requests():
-    for _ in range(200):
+    for _ in range(size):
         number = generate_random()
         arr.append(number)
         yield median_pb2.Request(number=number)
@@ -27,6 +28,7 @@ def generate_requests():
 def run():
     response= stub.get_median(generate_requests())
     print(f"The median of the array is {response.median}")
+    print(arr)
 
 if __name__ == '__main__':
     run()
