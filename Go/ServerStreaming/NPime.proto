@@ -1,16 +1,16 @@
 syntax="proto3";
 
-package nprime;
 
+option go_package = "/NPrime";
 
-service NPime {
-    rpc GetNPime (NPimeRequest) returns (stream NPimeResponse);
+service NPrime {
+    rpc GetNPrime (NPrimeRequest) returns (stream NPrimeResponse);
 }
 
-message NPimeRequest {
+message NPrimeRequest {
     int32 number = 1;
 }
 
-message NPimeResponse {
+message NPrimeResponse {
     int32 prime = 1;
 }
