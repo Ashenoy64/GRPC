@@ -1,0 +1,19 @@
+syntax="proto3";
+
+option go_package = "/Inverse";
+
+service InverseMatrix {
+  rpc GetInverseMatrix (stream InverseMatrixRequest) returns (stream InverseMatrixResponse);
+}
+
+message RealRows {
+  repeated double val = 1;
+}
+
+message InverseMatrixRequest {
+  repeated RealRows rows = 1;
+}
+
+message InverseMatrixResponse {
+  repeated RealRows rows = 1;
+}
