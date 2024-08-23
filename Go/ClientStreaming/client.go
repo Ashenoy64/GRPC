@@ -52,10 +52,11 @@ func main() {
 	}
 
 	rand.Seed(time.Now().UnixNano())
+	var numbers []int32
 
 	for i := 0; i < size; i++ {
 		number := int32(randomInt(1, 1000))
-		// fmt.Printf("Sending number: %d\n", number)
+		numbers = append(numbers, number)
 		if err := stream.Send(&pb.Request{Number: number}); err != nil {
 			log.Fatalf("Error sending number: %v", err)
 		}
@@ -66,5 +67,9 @@ func main() {
 		log.Fatalf("Error receiving response: %v", err)
 	}
 
+	for i:=0; i<len(numbers) ; i++ {
+		fmt.Printf("%d ",numbers[i])
+	}
+	fmt.Printf("\n")
 	fmt.Printf("The median is %f\n", resp.GetMedian())
 }
