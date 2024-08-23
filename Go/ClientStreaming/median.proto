@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package median;
+
+option go_package = "./Median";
+
+service FindMedianService {
+    rpc get_median (stream Request) returns (Response);
+}
+
+message Request {
+    int32 number = 1;
+}
+
+message Response {
+    double median = 1;
+}
