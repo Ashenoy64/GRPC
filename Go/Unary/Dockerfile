@@ -1,4 +1,4 @@
-FROM golang:1.22.0-bullseye
+FROM golang:1.22.6-bullseye
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN go mod download
 RUN apt update
 RUN apt install iproute2 -y
 
-RUN go build -o main server.go
+RUN go build -o main Server.go
 
 EXPOSE 50051
 

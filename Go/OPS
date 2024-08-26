@@ -1,2 +1,0 @@
-go build -o main .
-ops run -p 50051 main

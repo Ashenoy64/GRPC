@@ -44,7 +44,7 @@ func main() {
 		log.Fatalf("Failed to connect: %v", err)
 	}
 	defer conn.Close()
-
+	fmt.Println("SEND HELP")
 	client := Median.NewFindMedianServiceClient(conn)
 
 	stream, err := client.GetMedian(context.Background())
