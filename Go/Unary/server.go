@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"google.golang.org/grpc"1
+	"google.golang.org/grpc"
 
 	pb "Unary/Unary"
 )

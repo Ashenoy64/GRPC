@@ -1,0 +1,17 @@
+{
+    "Env": {
+        "LD_LIBRARY_PATH": "/.local/usr/lib/x86_64-linux-gnu",
+        "PATH": "./local/usr/lib/x86_64-linux-gnu/"
+    },
+    "MapDirs": {
+        "./.venv/*": "/.local",
+        "./usr/lib64/*": "/.local/usr/lib/x86_64-linux-gnu"
+    },
+    "Files": [
+        "server.py",
+        "prime_pb2_grpc.py",
+        "prime_pb2.py",
+        "prime.proto",
+        ".env"
+    ]
+}

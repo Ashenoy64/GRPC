@@ -2,7 +2,6 @@ package main
 
 import (
 	"BiStreaming/Inverse"
-	"fmt"
 	"io"
 	"log"
 
@@ -36,10 +35,8 @@ func (s *server) GetInverseMatrix(stream Inverse.InverseMatrix_GetInverseMatrixS
 		for _, val := range req.GetRows() {
 			row = append(row, val.Val...)
 		}
-		fmt.Println("Received row:", row)
 		matrix = append(matrix, row)
 	}
-	fmt.Println("DOne")
 	invMatrix, err := invertMatrix(matrix)
 	if err != nil {
 		return err
@@ -57,8 +54,6 @@ func (s *server) GetInverseMatrix(stream Inverse.InverseMatrix_GetInverseMatrixS
 }
 
 func invertMatrix(matrix [][]float64) ([][]float64, error) {
-	// Convert the 2D slice to a Gonum matrix
-
 	matA := mat.NewDense(len(matrix), len(matrix[0]), nil)
 	for i := range matrix {
 		matA.SetRow(i, matrix[i])
