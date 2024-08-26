@@ -2,4 +2,6 @@
 .env
 __pycache__
 Unary/venv
+.ext4
+LOG
 ClientStreaming/venv
