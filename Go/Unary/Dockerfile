@@ -1,10 +1,13 @@
-FROM golang:1.22.6-bullseye
+FROM golang:1.23.0
 
 WORKDIR /app
 
-COPY . .
+COPY go.mod .
+COPY go.sum .
 
 RUN go mod download
+
+COPY . .
 
 RUN apt update
 RUN apt install iproute2 -y

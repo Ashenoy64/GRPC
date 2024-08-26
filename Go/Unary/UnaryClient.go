@@ -46,9 +46,10 @@ func main() {
 
 	req := &Unary.PrimeRequest{N: int32(n)}
 	res, err := client.GetNthPrime(ctx, req)
+
 	if err != nil {
 		log.Fatalf("Error calling GetNthPrime: %v", err)
 	}
-
+	fmt.Printf("here\n")
 	fmt.Printf("The %dth prime number is %d\n", n, res.GetPrime())
 }
