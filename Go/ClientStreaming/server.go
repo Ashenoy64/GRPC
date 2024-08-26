@@ -9,14 +9,14 @@ import (
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 
-	pb "Median/Median"
+	"Median/Median"
 )
 
 type server struct {
-	pb.UnimplementedFindMedianServiceServer
+	Median.UnimplementedFindMedianServiceServer
 }
 
-func (s *server) GetMedian(stream pb.FindMedianService_GetMedianServer) error {
+func (s *server) GetMedian(stream Median.FindMedianService_GetMedianServer) error {
 	var numbers []int32
 
 	for {
@@ -45,7 +45,7 @@ func (s *server) GetMedian(stream pb.FindMedianService_GetMedianServer) error {
 	median := calculateMedian(numbers)
 
 	// Send the response
-	return stream.SendAndClose(&pb.Response{Median: median})
+	return stream.SendAndClose(&Median.Response{Median: median})
 }
 
 func calculateMedian(numbers []int32) float64 {
@@ -77,7 +77,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterFindMedianServiceServer(grpcServer, &server{})
+	Median.RegisterFindMedianServiceServer(grpcServer, &server{})
 
 	log.Printf("gRPC server is running on %s\n", address)
 	if err := grpcServer.Serve(listener); err != nil {

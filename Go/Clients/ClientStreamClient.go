@@ -8,11 +8,12 @@ import (
 	"strconv"
 	"time"
 
-	pb "Median/Median"
+	"Median/Median"
+
+	"math/rand"
 
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
-	"math/rand"
 )
 
 func randomInt(min, max int) int {
@@ -20,14 +21,14 @@ func randomInt(min, max int) int {
 }
 
 func main() {
-	
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	ip := os.Getenv("IP")
-	port := os.Getenv("PORT")
+	ip := os.Getenv("SERVER_IP")
+	port := os.Getenv("SERVER_PORT")
 	sizeStr := os.Getenv("SIZE")
 
 	size, err := strconv.Atoi(sizeStr)
@@ -44,7 +45,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewFindMedianServiceClient(conn)
+	client := Median.NewFindMedianServiceClient(conn)
 
 	stream, err := client.GetMedian(context.Background())
 	if err != nil {
@@ -57,7 +58,7 @@ func main() {
 	for i := 0; i < size; i++ {
 		number := int32(randomInt(1, 1000))
 		numbers = append(numbers, number)
-		if err := stream.Send(&pb.Request{Number: number}); err != nil {
+		if err := stream.Send(&Median.Request{Number: number}); err != nil {
 			log.Fatalf("Error sending number: %v", err)
 		}
 	}
@@ -67,8 +68,8 @@ func main() {
 		log.Fatalf("Error receiving response: %v", err)
 	}
 
-	for i:=0; i<len(numbers) ; i++ {
-		fmt.Printf("%d ",numbers[i])
+	for i := 0; i < len(numbers); i++ {
+		fmt.Printf("%d ", numbers[i])
 	}
 	fmt.Printf("\n")
 	fmt.Printf("The median is %f\n", resp.GetMedian())

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Unary/Unary"
 	"context"
 	"fmt"
 	"log"
@@ -9,18 +10,16 @@ import (
 
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
-
-	pb "Unary/Unary"
 )
 
 type server struct {
-	pb.UnimplementedPrimeServiceServer
+	Unary.UnimplementedPrimeServiceServer
 }
 
-func (s *server) GetNthPrime(ctx context.Context, req *pb.PrimeRequest) (*pb.PrimeResponse, error) {
+func (s *server) GetNthPrime(ctx context.Context, req *Unary.PrimeRequest) (*Unary.PrimeResponse, error) {
 	n := req.GetN()
 	prime := nthPrime(int(n))
-	return &pb.PrimeResponse{Prime: int64(prime)}, nil
+	return &Unary.PrimeResponse{Prime: int64(prime)}, nil
 }
 
 func nthPrime(n int) int {
@@ -64,7 +63,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterPrimeServiceServer(grpcServer, &server{})
+	Unary.RegisterPrimeServiceServer(grpcServer, &server{})
 
 	fmt.Printf("gRPC server is running on %s\n", address)
 	if err := grpcServer.Serve(listener); err != nil {

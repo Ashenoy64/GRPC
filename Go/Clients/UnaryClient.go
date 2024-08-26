@@ -8,21 +8,21 @@ import (
 	"strconv"
 	"time"
 
-	pb "Unary/Unary"
+	"Unary/Unary"
 
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 )
 
 func main() {
-	
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	ip := os.Getenv("IP")
-	port := os.Getenv("PORT")
+	ip := os.Getenv("SERVER_IP")
+	port := os.Getenv("SERVER_PORT")
 	nStr := os.Getenv("N")
 
 	n, err := strconv.Atoi(nStr)
@@ -39,12 +39,12 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewPrimeServiceClient(conn)
+	client := Unary.NewPrimeServiceClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	req := &pb.PrimeRequest{N: int32(n)}
+	req := &Unary.PrimeRequest{N: int32(n)}
 	res, err := client.GetNthPrime(ctx, req)
 	if err != nil {
 		log.Fatalf("Error calling GetNthPrime: %v", err)
