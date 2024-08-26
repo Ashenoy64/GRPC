@@ -54,8 +54,8 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	ip := os.Getenv("IP")
-	port := os.Getenv("PORT")
+	ip := os.Getenv("SERVER_IP")
+	port := os.Getenv("SERVER_PORT")
 	address := fmt.Sprintf("%s:%s", ip, port)
 
 	listener, err := net.Listen("tcp", address)

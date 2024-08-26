@@ -66,8 +66,8 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	ip := os.Getenv("IP")
-	port := os.Getenv("PORT")
+	ip := os.Getenv("SERVER_IP")
+	port := os.Getenv("SERVER_PORT")
 	address := ip + ":" + port
 
 	// Start listening on the specified IP and PORT
