@@ -4,4 +4,11 @@ __pycache__
 Unary/venv
 .ext4
 LOG
+Logs/
+Plots/
+.pcap
+.pcaps
+.csv
+.png
+Go/Firecracker/
 ClientStreaming/venv

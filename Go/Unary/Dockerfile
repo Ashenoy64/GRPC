@@ -12,8 +12,11 @@ COPY . .
 RUN apt update
 RUN apt install iproute2 -y
 
-RUN go build -o main Server.go
+
+#RUN go build -o main Server.go
+RUN go build -o main ServerTest.go
 
 EXPOSE 50051
+EXPOSE 6060
 
 CMD ["./main"]

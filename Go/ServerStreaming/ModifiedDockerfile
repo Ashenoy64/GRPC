@@ -1,0 +1,15 @@
+FROM golang:1.22.6-bullseye
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod download
+
+RUN apt update
+
+RUN go build -o main ModifiedServer.go
+
+EXPOSE 50051
+
+CMD ["./main"]

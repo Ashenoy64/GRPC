@@ -1,0 +1,10 @@
+running local instance
+booting /home/user/.ops/images/UnaryServer ...
+en1: assigned 10.0.2.15
+gRPC server is running on localhost:50051
+netsock_getsockopt error: getsockopt unimplemented optname: fd 3, level 1, optname 20
+netsock_getsockopt error: getsockopt unimplemented optname: fd 3, level 1, optname 21
+netsock_getsockopt error: getsockopt unimplemented optname: fd 6, level 1, optname 20
+netsock_getsockopt error: getsockopt unimplemented optname: fd 6, level 1, optname 21
+en1: assigned FE80::B080:57FF:FE4A:50D
+[31mwait: no child processes[0m
